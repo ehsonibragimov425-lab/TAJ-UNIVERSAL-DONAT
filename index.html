@@ -1,226 +1,132 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#160609">
-<title>TAJ UNIVERSAL DONAT</title>
+]
+            }
+        ]
+    }
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+};
+
+let selectedGame = "";
+let selectedProduct = "";
+let selectedPrice = "";
+
+function openGame(gameKey) {
+
+    selectedGame = gameKey;
+
+    const game = games[gameKey];
+
+    document.getElementById("homePage").style.display = "none";
+    document.getElementById("productsPage").style.display = "block";
+    document.getElementById("orderPage").style.display = "none";
+
+    document.getElementById("gameIcon").textContent = game.icon;
+    document.getElementById("gameName").textContent = game.name;
+
+    const list = document.getElementById("productsList");
+
+    list.innerHTML = "";
+
+    game.categories.forEach(category => {
+
+        const title = document.createElement("h3");
+        title.className = "category-title";
+        title.textContent = category.title;
+
+        list.appendChild(title);
+
+        category.products.forEach(product => {
+
+            const button = document.createElement("button");
+
+            button.className = "package";
+
+            button.innerHTML =                 <span>${product[0]}</span>                 <span class="price">${product[1]} сомони</span>            ;
+
+            button.onclick = () => selectProduct(product[0], product[1]);
+
+            list.appendChild(button);
+
+        });
+
+    });
+
+    window.scrollTo(0, 0);
 }
 
-body {
-    background: #100508;
-    color: white;
-    font-family: Arial, sans-serif;
+function selectProduct(product, price) {
+
+    selectedProduct = product;
+    selectedPrice = price;
+
+    document.getElementById("productsPage").style.display = "none";
+    document.getElementById("orderPage").style.display = "block";
+
+    document.getElementById("selectedInfo").innerHTML = `
+        🎮 Игра: <b>${games[selectedGame].name}</b><br>
+        💎 Товар: <b>${selectedProduct}</b><br>
+        💰 Цена: <b>${selectedPrice} сомони</b>
+    `;
+
+    document.getElementById("result").textContent = "";
+
+    window.scrollTo(0, 0);
 }
 
-header {
-    background: linear-gradient(135deg, #300811, #100508);
-    text-align: center;
-    padding: 25px 15px;
-    border-bottom: 2px solid #ff2638;
+function backToProducts() {
+
+    document.getElementById("orderPage").style.display = "none";
+    document.getElementById("productsPage").style.display = "block";
+
+    window.scrollTo(0, 0);
 }
 
-header h1 {
-    color: #ff2638;
-    font-size: 23px;
+function goHome() {
+
+    document.getElementById("productsPage").style.display = "none";
+    document.getElementById("orderPage").style.display = "none";
+    document.getElementById("homePage").style.display = "block";
+
+    window.scrollTo(0, 0);
 }
 
-header p {
-    color: #ddd;
-    margin-top: 8px;
+function sendOrder() {
+
+    const playerId = document.getElementById("playerId").value.trim();
+    const playerName = document.getElementById("playerName").value.trim();
+
+    if (!playerId) {
+        alert("Пожалуйста, введите игровой ID!");
+        return;
+    }
+
+    const message =
+`🔥 НОВЫЙ ЗАКАЗ
+━━━━━━━━━━━━━━
+🎮 Игра: ${games[selectedGame].name}
+📦 Товар: ${selectedProduct}
+💰 Цена: ${selectedPrice} сомони
+🆔 ID игрока: ${playerId}
+👤 Имя: ${playerName || "Не указано"}
+━━━━━━━━━━━━━━
+TAJ UNIVERSAL DONAT`;
+
+    const telegramUrl =
+        "https://t.me/share/url?url=" +
+        encodeURIComponent("https://t.me/" + BOT_USERNAME) +
+        "&text=" + encodeURIComponent(message);
+
+    document.getElementById("result").textContent =
+        "Заказ подготовлен! Сейчас откроется Telegram. Выберите чат для отправки заказа.";
+
+    window.open(telegramUrl, "_blank");
+
 }
 
-.container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
+function comingSoon() {
+    alert("Эта игра скоро появится! 🔥");
 }
 
-h2 {
-    margin-bottom: 18px;
-}
+</script>
 
-.games {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 13px;
-}
-
-.game {
-    background: #290b12;
-    border: 1px solid #8e1728;
-    border-radius: 14px;
-    padding: 22px 10px;
-    text-align: center;
-    color: white;
-    font-size: 17px;
-    cursor: pointer;
-    touch-action: manipulation;
-}
-
-.game:active {
-    background: #a10d26;
-}
-
-.icon {
-    font-size: 38px;
-    margin-bottom: 10px;
-}
-
-#diamondPage {
-    display: none;
-}
-
-.ff-banner {
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
-    border-radius: 15px;
-    border: 2px solid #ff2638;
-    margin-bottom: 18px;
-    background: #290b12;
-}
-
-.ff-title {
-    color: #ff4050;
-    text-align: center;
-    margin-bottom: 18px;
-}
-
-.package {
-    display: block;
-    width: 100%;
-    padding: 19px;
-    margin: 12px 0;
-    border: 1px solid #ff6470;
-    border-radius: 13px;
-    background: linear-gradient(135deg, #720c20, #d81732);
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    touch-action: manipulation;
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-.package:active {
-    background: #ff2638;
-    transform: scale(0.98);
-}
-
-#orderPage {
-    display: none;
-    margin-top: 22px;
-    padding: 18px;
-    background: #290b12;
-    border: 1px solid #ff2638;
-    border-radius: 14px;
-}
-
-#selectedInfo {
-    color: #ff6470;
-    margin: 12px 0;
-    font-size: 17px;
-}
-
-input {
-    width: 100%;
-    padding: 15px;
-    margin-top: 12px;
-    border-radius: 9px;
-    border: 1px solid #ff2638;
-    background: #160609;
-    color: white;
-    font-size: 16px;
-}
-
-input::placeholder {
-    color: #aaa;
-}
-
-.main-button {
-    width: 100%;
-    padding: 15px;
-    margin-top: 15px;
-    border: 0;
-    border-radius: 10px;
-    background: #ff2638;
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    touch-action: manipulation;
-}
-
-.back {
-    background: #420b17;
-    border: 1px solid #ff2638;
-}
-
-#result {
-    white-space: pre-line;
-    margin-top: 15px;
-    line-height: 1.6;
-    color: #fff;
-}
-
-.notice {
-    text-align: center;
-    color: #aaa;
-    margin-top: 25px;
-    padding-bottom: 20px;
-}
-
-[hidden] {
-    display: none !important;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <h1>🔥 TAJ UNIVERSAL DONAT</h1>
-    <p>Быстро • Удобно • Надёжно</p>
-</header>
-
-<div class="container">
-
-    <div id="homePage">
-        <h2>🎮 Выберите игру</h2>
-
-        <div class="games">
-
-            <button class="game" type="button" onclick="openFreeFire()">
-                <div class="icon">🔥</div>
-                Free Fire
-            </button>
-
-            <button class="game" type="button" onclick="comingSoon()">
-                <div class="icon">🎯</div>
-                PUBG Mobile
-            </button>
-
-            <button class="game" type="button" onclick="comingSoon()">
-                <div class="icon">💥</div>
-                Blood Strike
-            </button>
-
-            <button class="game" type="button" onclick="comingSoon()">
-                <div class="icon">⚔️</div>
-                Call of Duty
-            </button>
-
-            <button class="game" type="button" onclick="comingSoon()">
-                <div class="icon">🛡️</div>
-                Mobile Legends
-            </button>
-
-            <button class="game" type="button" onclick="comingSoon()">
+</body>
+</html>
