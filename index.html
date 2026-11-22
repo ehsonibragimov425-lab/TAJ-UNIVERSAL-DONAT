@@ -1,142 +1,122 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAJ UNIVERSAL DONAT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAJ UNIVERSAL DONAT</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #0b1020;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            background: #151d35;
-            padding: 22px;
-            text-align: center;
-            border-bottom: 2px solid #00d9ff;
-        }
-
-        header h1 {
-            color: #00d9ff;
-            font-size: 25px;
-        }
-
-        header p {
-            color: #aaa;
-            margin-top: 8px;
-        }
-
-        .container {
-            padding: 20px;
-            max-width: 700px;
-            margin: auto;
-        }
-
-        h2 {
-            margin-bottom: 18px;
-        }
-
-        .games {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .game {
-            background: #192440;
-            border: 1px solid #29395d;
-            border-radius: 15px;
-            padding: 22px 10px;
-            text-align: center;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .game:active {
-            background: #006b88;
-        }
-
-        .icon {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
-
-        .notice {
-            margin-top: 25px;
-            background: #151d35;
-            padding: 15px;
-            border-radius: 12px;
-            color: #aaa;
-            text-align: center;
-        }
-    </style>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0b1020;color:white;font-family:Arial}
+header{text-align:center;padding:25px;background:#151d35;border-bottom:2px solid #00d9ff}
+header h1{color:#00d9ff;font-size:23px}
+.container{max-width:600px;margin:auto;padding:20px}
+h2{margin-bottom:18px}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.game,.package{background:#192440;border:1px solid #29395d;border-radius:14px;padding:22px 10px;text-align:center;cursor:pointer}
+.game:active,.package:active{background:#006b88}
+.icon{font-size:35px;margin-bottom:10px}
+#diamondPage{display:none}
+.package{margin:12px 0;padding:18px;font-size:18px}
+button{width:100%;padding:15px;background:#00bfe0;color:#00121a;border:0;border-radius:10px;font-size:17px;font-weight:bold;margin-top:15px}
+input{width:100%;padding:14px;margin-top:15px;border-radius:9px;border:0;font-size:16px}
+.back{background:#29395d;color:white}
+.notice{text-align:center;color:#aaa;margin-top:25px}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>🎮 TAJ UNIVERSAL DONAT</h1>
-        <p>Добро пожаловать в наш магазин!</p>
-    </header>
+<header>
+<h1>🎮 TAJ UNIVERSAL DONAT</h1>
+<p>Добро пожаловать в наш магазин!</p>
+</header>
 
-    <div class="container">
+<div class="container">
 
-        <h2>🎯 Выберите игру</h2>
+<div id="homePage">
+<h2>🎯 Выберите игру</h2>
 
-        <div class="games">
-
-            <div class="game" onclick="openFreeFire()">
-    <div class="icon">🔥</div>
-    Free Fire
+<div class="games">
+<div class="game" onclick="openFreeFire()">
+<div class="icon">🔥</div>Free Fire
 </div>
 
-            <div class="game">
-                <div class="icon">🎯</div>
-                PUBG Mobile
-            </div>
+<div class="game"><div class="icon">🎯</div>PUBG Mobile</div>
+<div class="game"><div class="icon">💥</div>Blood Strike</div>
+<div class="game"><div class="icon">⚔️</div>Call of Duty</div>
+<div class="game"><div class="icon">🛡️</div>Mobile Legends</div>
+<div class="game"><div class="icon">🎮</div>Roblox</div>
+</div>
+</div>
 
-            <div class="game">
-                <div class="icon">💥</div>
-                Blood Strike
-            </div>
+<div id="diamondPage">
+<h2>🔥 Free Fire — Выберите алмазы</h2>
 
-            <div class="game">
-                <div class="icon">⚔️</div>
-                Call of Duty
-            </div>
+<div class="package" onclick="selectPackage(100,9)">
+💎 100 алмазов — 9 сомони
+</div>
 
-            <div class="game">
-                <div class="icon">🛡️</div>
-                Mobile Legends
-            </div>
+<div class="package" onclick="selectPackage(300,28)">
+💎 300 алмазов — 28 сомони
+</div>
 
-            <div class="game">
-                <div class="icon">🎮</div>
-                Roblox
-            </div>
+<div class="package" onclick="selectPackage(500,47)">
+💎 500 алмазов — 47 сомони
+</div>
 
-        </div>
+<div class="package" onclick="selectPackage(1000,95)">
+💎 1000 алмазов — 95 сомони
+</div>
 
-        <div class="notice">
-            ⚡ Быстро • Удобно • Надёжно
-        </div>
+<div id="orderPage" style="display:none">
+<h2>📝 Оформление заказа</h2>
+<p id="selectedInfo"></p>
+<input id="playerId" placeholder="Введите ваш Player ID">
+<button onclick="confirmOrder()">Подтвердить заказ</button>
+</div>
 
-    </div>
+<button class="back" onclick="goHome()">⬅ Назад</button>
+</div>
+
+<div class="notice">⚡ Быстро • Удобно • Надёжно</div>
+
+</div>
+
 <script>
-function openFreeFire() {
-    alert("🔥 Free Fire\n\nВыберите пакет алмазов:\n\n100 алмазов — 9 сомони\n300 алмазов — 28 сомони\n500 алмазов — 47 сомони\n1000 алмазов — 95 сомони");
+let diamonds=0;
+let price=0;
+
+function openFreeFire(){
+document.getElementById("homePage").style.display="none";
+document.getElementById("diamondPage").style.display="block";
+}
+
+function goHome(){
+document.getElementById("diamondPage").style.display="none";
+document.getElementById("homePage").style.display="block";
+document.getElementById("orderPage").style.display="none";
+}
+
+function selectPackage(d,p){
+diamonds=d;
+price=p;
+document.getElementById("orderPage").style.display="block";
+document.getElementById("selectedInfo").innerText=
+"Вы выбрали "+d+" алмазов. Цена: "+p+" сомони";
+}
+
+function confirmOrder(){
+let id=document.getElementById("playerId").value.trim();
+if(id===""){
+alert("Введите Player ID!");
+return;
+}
+alert("Заказ подготовлен!\nАлмазы: "+diamonds+
+"\nЦена: "+price+" сомони\nPlayer ID: "+id+
+"\n\nОжидайте подтверждения администратора.");
 }
 </script>
+
 </body>
 </html>
-``
