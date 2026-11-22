@@ -1,10 +1,773 @@
-textContent =
+```html
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e92332">
+
+<title>TAJ UNIVERSAL DONAT</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f5f8;
+    color:#222;
+    padding-bottom:100px;
+}
+
+header{
+    padding:22px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:50px;
+    height:50px;
+    border-radius:16px;
+    background:#e92332;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:25px;
+}
+
+.profile h3{
+    font-size:16px;
+}
+
+.profile p{
+    font-size:12px;
+    color:#888;
+    margin-top:5px;
+}
+
+.header-icons button{
+    border:0;
+    background:white;
+    padding:12px;
+    border-radius:13px;
+    font-size:20px;
+}
+
+.container{
+    max-width:650px;
+    margin:auto;
+    padding:10px 17px;
+}
+
+.balance{
+    background:linear-gradient(135deg,#ff3948,#b90019);
+    padding:25px;
+    color:white;
+    border-radius:25px;
+    box-shadow:0 10px 25px #e9233230;
+}
+
+.balance small{
+    font-size:15px;
+}
+
+.balance h1{
+    font-size:42px;
+    margin:12px 0 22px;
+}
+
+.balance-actions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+
+.balance-actions button{
+    border:1px solid #ffffff55;
+    background:#ffffff20;
+    color:white;
+    border-radius:13px;
+    padding:12px 4px;
+    font-size:11px;
+}
+
+.rating{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    margin:20px 0;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.rating strong{
+    font-size:25px;
+}
+
+.rating span{
+    color:#f4bc22;
+}
+
+.tabs{
+    display:flex;
+    background:white;
+    padding:6px;
+    border-radius:30px;
+    margin:20px 0;
+}
+
+.tabs button{
+    flex:1;
+    border:0;
+    background:transparent;
+    padding:14px 3px;
+    border-radius:25px;
+    font-weight:bold;
+    color:#777;
+}
+
+.tabs button.active{
+    background:#e92332;
+    color:white;
+}
+
+.games{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:17px 10px;
+}
+
+.game{
+    border:0;
+    background:transparent;
+    text-align:center;
+    cursor:pointer;
+}
+
+.game-image{
+    height:115px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:45px;
+    color:white;
+    box-shadow:0 5px 12px #00000015;
+}
+
+.pubg{
+    background:linear-gradient(135deg,#70b9e9,#263b66);
+}
+
+.ff{
+    background:linear-gradient(135deg,#ff9a22,#e92332);
+}
+
+.bs{
+    background:linear-gradient(135deg,#f5a52d,#32203f);
+}
+
+.cod{
+    background:linear-gradient(135deg,#303b45,#9b6b39);
+}
+
+.fc{
+    background:linear-gradient(135deg,#3cae65,#124d36);
+}
+
+.efootball{
+    background:linear-gradient(135deg,#1d68dc,#0b1747);
+}
+
+.game-name{
+    font-size:12px;
+    font-weight:bold;
+    margin-top:9px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.back{
+    border:0;
+    background:#ffe5e7;
+    color:#d7192d;
+    padding:13px 20px;
+    border-radius:15px;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.game-banner{
+    padding:25px;
+    border-radius:23px;
+    text-align:center;
+    color:white;
+    margin-bottom:20px;
+}
+
+.big-icon{
+    font-size:60px;
+}
+
+.game-banner h2{
+    margin:10px 0;
+}
+
+.category-title{
+    margin:25px 0 12px;
+    font-size:18px;
+}
+
+.product{
+    width:100%;
+    border:1px solid #eee;
+    background:white;
+    border-radius:15px;
+    padding:18px 15px;
+    margin:7px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    text-align:left;
+    font-size:14px;
+    cursor:pointer;
+    box-shadow:0 3px 8px #00000005;
+}
+
+.product b{
+    color:#e92332;
+    white-space:nowrap;
+}
+
+.product:active{
+    background:#fff0f1;
+}
+
+#orderBox{
+    display:none;
+    background:white;
+    padding:22px;
+    border-radius:22px;
+    margin-top:25px;
+    box-shadow:0 5px 20px #00000010;
+}
+  #orderBox h3{
+    margin-bottom:15px;
+}
+
+#selectedInfo{
+    background:#fff0f1;
+    color:#d7192d;
+    padding:14px;
+    border-radius:12px;
+    margin:12px 0;
+    font-weight:bold;
+}
+
+#orderBox input{
+    width:100%;
+    padding:16px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    margin:12px 0;
+    font-size:16px;
+}
+
+.primary{
+    width:100%;
+    border:0;
+    background:#e92332;
+    color:white;
+    padding:16px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:bold;
+    margin-top:10px;
+    cursor:pointer;
+}
+
+#orderResult{
+    white-space:pre-line;
+    line-height:1.7;
+    margin-top:17px;
+    font-size:14px;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:8px;
+    left:3%;
+    width:94%;
+    background:white;
+    border-radius:25px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    padding:8px;
+    box-shadow:0 5px 25px #00000020;
+    z-index:10;
+}
+
+.bottom-nav button{
+    border:0;
+    background:transparent;
+    padding:9px 2px;
+    color:#999;
+    font-size:11px;
+}
+
+.bottom-nav button.active{
+    background:#e92332;
+    color:white;
+    border-radius:18px;
+}
+
+.bottom-nav span{
+    display:block;
+    font-size:21px;
+    margin-bottom:4px;
+}
+
+.notice{
+    text-align:center;
+    color:#aaa;
+    font-size:12px;
+    margin:30px 0;
+}
+
+@media(max-width:380px){
+    .game-image{
+        height:95px;
+    }
+
+    .game-name{
+        font-size:10px;
+    }
+
+    .product{
+        font-size:12px;
+        padding:15px 10px;
+    }
+
+    .product b{
+        font-size:12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="profile">
+        <div class="avatar">🔥</div>
+
+        <div>
+            <h3>TAJ UNIVERSAL</h3>
+            <p>@TajUniversalDonatBot</p>
+        </div>
+    </div>
+
+    <div class="header-icons">
+        <button onclick="showMessage('Бонусҳо ба наздикӣ!')">🎁</button>
+    </div>
+
+</header>
+
+<div class="container">
+
+    <div class="balance">
+
+        <small>💰 Баланс</small>
+
+        <h1>0.00 <small>сомонӣ</small></h1>
+
+        <div class="balance-actions">
+
+            <button onclick="showMessage('Пур кардани ҳисоб ба наздикӣ')">
+                💳<br>Пур кардан
+            </button>
+
+            <button onclick="showMessage('Рамзҳои бонусӣ ба наздикӣ')">
+                🎟<br>Бонус
+            </button>
+
+            <button onclick="showMessage('Дастгирӣ ба наздикӣ')">
+                💬<br>Дастгирӣ
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="rating">
+
+        <div style="font-size:30px;color:#f4bc22">★</div>
+
+        <strong>5.0</strong>
+
+        <span>★★★★★</span>
+
+        <small>TAJ DONAT</small>
+
+    </div>
+
+    <div class="tabs">
+
+        <button class="active"
+        onclick="changeTab(this,'gamesPage')">
+            Бозиҳо
+        </button>
+
+        <button onclick="changeTab(this,'giftPage')">
+            Gift Code
+        </button>
+
+        <button onclick="changeTab(this,'aiPage')">
+            🤖 AI
+        </button>
+
+    </div>
+
+    <section id="gamesPage" class="page active">
+
+        <div class="games">
+
+            <button class="game" onclick="openGame('pubg')">
+                <div class="game-image pubg">🎯</div>
+                <div class="game-name">PUBG MOBILE</div>
+            </button>
+
+            <button class="game" onclick="openGame('freefire')">
+                <div class="game-image ff">🔥</div>
+                <div class="game-name">FREE FIRE</div>
+            </button>
+
+            <button class="game" onclick="openGame('blood')">
+                <div class="game-image bs">💥</div>
+                <div class="game-name">BLOOD STRIKE</div>
+            </button>
+
+            <button class="game" onclick="showMessage('Ба наздикӣ илова мешавад')">
+                <div class="game-image cod">⚔️</div>
+                <div class="game-name">CALL OF DUTY</div>
+            </button>
+
+            <button class="game" onclick="showMessage('Ба наздикӣ илова мешавад')">
+                <div class="game-image fc">⚽</div>
+                <div class="game-name">FC MOBILE</div>
+            </button>
+                <button class="game" onclick="showMessage('Ба наздикӣ илова мешавад')">
+                <div class="game-image efootball">🎮</div>
+                <div class="game-name">EFOOTBALL</div>
+            </button>
+
+        </div>
+
+    </section>
+
+    <section id="giftPage" class="page">
+
+        <h2>🎁 Gift Code</h2>
+
+        <p style="color:#888;margin-top:12px">
+            Gift Code ба наздикӣ илова мешавад.
+        </p>
+
+    </section>
+
+    <section id="aiPage" class="page">
+
+        <h2>🤖 TAJ AI</h2>
+
+        <p style="color:#888;margin-top:12px">
+            Ёвари AI ба наздикӣ фаъол мешавад.
+        </p>
+
+    </section>
+
+    <section id="gameDetail" class="page">
+
+        <button class="back" onclick="goHome()">
+            ← Бозгашт
+        </button>
+
+        <div id="gameContent"></div>
+
+        <div id="orderBox">
+
+            <h3>📝 Оформление заказа</h3>
+
+            <div id="selectedInfo"></div>
+
+            <label id="idLabel">Player ID</label>
+
+            <input
+                id="playerId"
+                type="text"
+                placeholder="Player ID-и худро ворид кунед"
+                autocomplete="off"
+            >
+
+            <button class="primary" onclick="confirmOrder()">
+                Тасдиқи фармоиш
+            </button>
+
+            <p id="orderResult"></p>
+
+        </div>
+
+    </section>
+
+    <div class="notice">
+        TAJ UNIVERSAL DONAT • 2026
+    </div>
+
+</div>
+
+<nav class="bottom-nav">
+
+    <button class="active" onclick="navHome(this)">
+        <span>▦</span>
+        Меню
+    </button>
+
+    <button onclick="navInfo(this,'Таърихи фармоишҳо ҳоло холӣ аст')">
+        <span>◷</span>
+        Таърих
+    </button>
+
+    <button onclick="navInfo(this,'Дӯстон ба наздикӣ')">
+        <span>♧</span>
+        Дӯстон
+    </button>
+
+    <button onclick="navInfo(this,'Танзимот ба наздикӣ')">
+        <span>⚙</span>
+        Танзимот
+    </button>
+
+</nav>
+
+<script>
+
+let currentGame = "";
+let selectedProduct = "";
+let selectedPrice = 0;
+
+const products = {
+
+    freefire: {
+
+        title:"FREE FIRE",
+        icon:"🔥",
+        idName:"Free Fire Player ID",
+        banner:"linear-gradient(135deg,#ff9a22,#e92332)",
+
+        categories:[
+
+            {
+                title:"💎 АЛМАЗҲО",
+
+                items:[
+                    ["105 алмаз",9],
+                    ["340 алмаз",29],
+                    ["572 алмаз",58],
+                    ["1100 алмаз",97.50],
+                    ["2300 алмаз",205],
+                    ["6100 алмаз",480]
+                ]
+            },
+
+            {
+                title:"🎟 ВАУЧЕРҲО",
+
+                items:[
+                    ["Ваучер на неделю",18],
+                    ["Ваучер на месяц",75],
+                    ["Ваучер Лайт",6]
+                ]
+            }
+
+        ]
+    },
+
+    pubg: {
+
+        title:"PUBG MOBILE",
+        icon:"🎯",
+        idName:"PUBG Mobile Player ID",
+        banner:"linear-gradient(135deg,#70b9e9,#263b66)",
+
+        categories:[
+
+            {
+                title:"🪙 UC",
+
+                items:[
+                    ["60 UC",10],
+                    ["325 UC",47],
+                    ["660 UC",94],
+                    ["985 UC",142]
+                ]
+            },
+
+            {
+                title:"👑 ELITE PASS",
+
+                items:[
+                    ["Elite Pass LV1-50",58],
+                    ["Elite Pass LV1-100",118],
+                    ["Elite Pass Plus LV1-100",280]
+                ]
+            }
+
+        ]
+    },
+
+    blood: {
+
+        title:"BLOOD STRIKE",
+        icon:"💥",
+        idName:"Blood Strike Player ID",
+        banner:"linear-gradient(135deg,#f5a52d,#32203f)",
+
+        categories:[
+
+            {
+                title:"🪙 GOLD",
+
+                items:[
+                    ["51 Gold",5],
+                    ["105 Gold",10],
+                    ["320 Gold",27],
+                    ["540 Gold",44],
+                    ["1100 Gold",87],
+                    ["2260 Gold",170],
+                    ["5800 Gold",430]
+                ]
+            },
+
+            {
+           title:"🎟 PASS",
+
+                items:[
+                    ["Strike Pass Elite",37],
+                    ["Strike Pass Premium",80],
+                    ["Level Up Pass",18]
+                ]
+            }
+
+        ]
+    }
+
+};
+
+
+function changeTab(button,id){
+
+    document.querySelectorAll(".tabs button")
+    .forEach(b=>b.classList.remove("active"));
+
+    button.classList.add("active");
+
+    document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+    document.getElementById(id).classList.add("active");
+
+}
+
+
+function openGame(game){
+
+    currentGame = game;
+
+    const data = products[game];
+
+    let html =          <div class="game-banner"         style="background:${data.banner}">              <div class="big-icon">${data.icon}</div>              <h2>${data.title}</h2>              <p>Пакетро интихоб кунед</p>          </div>     ;
+
+    data.categories.forEach(category=>{
+
+        html += `
+            <h3 class="category-title">
+                ${category.title}
+            </h3>
+        `;
+
+        category.items.forEach(item=>{
+
+            html += `
+
+                <button class="product"
+                onclick="selectProduct('${item[0]}',${item[1]})">
+
+                    <span>${item[0]}</span>
+
+                    <b>${item[1]} сомонӣ →</b>
+
+                </button>
+
+            `;
+
+        });
+
+    });
+
+
+    document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+    document.getElementById("gameDetail")
+    .classList.add("active");
+
+    document.getElementById("gameContent").innerHTML = html;
+
+    document.getElementById("orderBox").style.display = "none";
+
+    window.scrollTo(0,0);
+
+}
+
+
+function selectProduct(name,price){
+
+    selectedProduct = name;
+    selectedPrice = price;
+
+    const data = products[currentGame];
+
+    document.getElementById("orderBox").style.display = "block";
+
+    document.getElementById("selectedInfo").textContent =
         name + " — " + price + " сомонӣ";
 
-    document.getElementById("playerId").value = "";
+    document.getElementById("idLabel").textContent =
+        data.idName;
 
     document.getElementById("playerId").placeholder =
-        data.idName;
+        data.idName + " ворид кунед";
+
+    document.getElementById("playerId").value = "";
 
     document.getElementById("orderResult").textContent = "";
 
@@ -12,19 +775,22 @@ textContent =
         behavior:"smooth",
         block:"start"
     });
+
 }
 
-function confirmOrder() {
+
+function confirmOrder(){
 
     const id = document.getElementById("playerId")
     .value.trim();
 
-    if(!id) {
+    if(!id){
 
         document.getElementById("orderResult").textContent =
-        "❌ Лутфан ID-и бозиро ворид кунед.";
+            "❌ Лутфан Player ID-ро ворид кунед.";
 
         return;
+
     }
 
     document.getElementById("orderResult").textContent =
@@ -39,12 +805,14 @@ function confirmOrder() {
 
         "🆔 Player ID: " + id + "\n\n" +
 
-        "Ташаккур барои харид!\n" +
+        "Ташаккур барои интихоб!\n" +
 
         "Фармоиш ҳоло ба админ фиристода намешавад.";
+
 }
 
-function goHome() {
+
+function goHome(){
 
     document.querySelectorAll(".page")
     .forEach(p=>p.classList.remove("active"));
@@ -55,9 +823,11 @@ function goHome() {
     document.getElementById("orderBox").style.display = "none";
 
     window.scrollTo(0,0);
+
 }
 
-function navHome(button) {
+
+function navHome(button){
 
     document.querySelectorAll(".bottom-nav button")
     .forEach(b=>b.classList.remove("active"));
@@ -71,9 +841,11 @@ function navHome(button) {
     .classList.add("active");
 
     window.scrollTo(0,0);
+
 }
 
-function navInfo(button,message) {
+
+function navInfo(button,message){
 
     document.querySelectorAll(".bottom-nav button")
     .forEach(b=>b.classList.remove("active"));
@@ -81,17 +853,26 @@ function navInfo(button,message) {
     button.classList.add("active");
 
     showMessage(message);
+
 }
 
-function showMessage(message) {
+
+function showMessage(message){
+
     alert(message);
+
 }
 
-if(window.Telegram && window.Telegram.WebApp) {
+
+if(window.Telegram && window.Telegram.WebApp){
 
     window.Telegram.WebApp.ready();
 
     window.Telegram.WebApp.expand();
 
 }
+
 </script>
+
+</body>
+</html>
