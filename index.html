@@ -1,14 +1,138 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAJ UNIVERSAL DONAT</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b1020;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background: #151d35;
+            padding: 22px;
+            text-align: center;
+            border-bottom: 2px solid #00d9ff;
+        }
+
+        header h1 {
+            color: #00d9ff;
+            font-size: 25px;
+        }
+
+        header p {
+            color: #aaa;
+            margin-top: 8px;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        h2 {
+            margin-bottom: 18px;
+        }
+
+        .games {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .game {
+            background: #192440;
+            border: 1px solid #29395d;
+            border-radius: 15px;
+            padding: 22px 10px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .game:active {
+            background: #006b88;
+        }
+
+        .icon {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .notice {
+            margin-top: 25px;
+            background: #151d35;
+            padding: 15px;
+            border-radius: 12px;
+            color: #aaa;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>🎮 TAJ UNIVERSAL DONAT</h1>
-    <p>Добро пожаловать в наш магазин!</p>
+    <header>
+        <h1>🎮 TAJ UNIVERSAL DONAT</h1>
+        <p>Добро пожаловать в наш магазин!</p>
+    </header>
+
+    <div class="container">
+
+        <h2>🎯 Выберите игру</h2>
+
+        <div class="games">
+
+            <div class="game">
+                <div class="icon">🔥</div>
+                Free Fire
+            </div>
+
+            <div class="game">
+                <div class="icon">🎯</div>
+                PUBG Mobile
+            </div>
+
+            <div class="game">
+                <div class="icon">💥</div>
+                Blood Strike
+            </div>
+
+            <div class="game">
+                <div class="icon">⚔️</div>
+                Call of Duty
+            </div>
+
+            <div class="game">
+                <div class="icon">🛡️</div>
+                Mobile Legends
+            </div>
+
+            <div class="game">
+                <div class="icon">🎮</div>
+                Roblox
+            </div>
+
+        </div>
+
+        <div class="notice">
+            ⚡ Быстро • Удобно • Надёжно
+        </div>
+
+    </div>
 
 </body>
 </html>
+``
